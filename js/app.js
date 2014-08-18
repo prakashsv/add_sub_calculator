@@ -1,26 +1,39 @@
 (function(){
 	var plus = function(){
-		alert('plus function called');
-		var x = document.getElementById('x');
-		var y = document.getElementById('y');
+		compute('plus');		
+	};
 
-		var validX = typeof x === 'number';
-		var validY = typeof y === 'number';
+	var minus = function(){
+		compute('minus');
+	};
 
-		if (validX && validY)
+	var compute = function(operator){
+		var x = document.getElementById('x').value.trim();
+		var y = document.getElementById('y').value.trim();	
+
+		if (x !== '' && Math.floor(x) == x && y !== '' && Math.floor(y) == y)
 		{
-			// write value of x + y into result
+			if (operator === 'plus')
+				writeResult(true, parseInt(x)+parseInt(y));
+			else
+				writeResult(true, parseInt(x)-parseInt(y));
 		}
 		else
 		{
-			// write invalid input in the result
+			writeResult(false, 'invalid input arguments! Both arguments must be integers');
 		}
-	};
-	var minus = function(){
-		alert('minus function called');
-	};
+	}
 
 	document.addEventListener("DOMContentLoaded", function(event) {
     	document.querySelector(".plus").addEventListener('click', plus);
+    	document.querySelector(".minus").addEventListener('click', minus);
   	});
+
+  	var writeResult = function(valid, message){
+  		document.getElementById("result").innerHTML = message;
+  		if (valid)
+  			document.getElementById("result").className = 'success';
+  		else
+			document.getElementById("result").className = 'failure';
+  	}
 }());

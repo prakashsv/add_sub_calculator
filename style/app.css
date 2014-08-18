@@ -1,3 +1,10 @@
 h1,.textinput,#plusminus,#result{
 	text-align: center;
 }
+
+#result.success{
+	color: green;
+}
+#result.failure{
+	color: red;
+}
